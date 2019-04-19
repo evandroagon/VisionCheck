@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VisionCheck.View.PageCalib">
+    <ContentPage.Content>
+    <StackLayout>
+
+            <TableView Intent="Settings" HasUnevenRows="true">
+        <TableRoot>
+            
+            <TableSection Title="configurações">
+                <SwitchCell Text="Mostrar Escala" />
+                <SwitchCell Text="Escala ligada" On="true" />
+            </TableSection>
+            <TableSection Title="Calibração da Tela">
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical"
+                                         HeightRequest="400"
+                                         >
+                                <Label Text="E"                                      
+                                   BindingContext="{x:Reference Name=slider }"
+                                   TextColor="Accent"
+                                       HorizontalOptions="CenterAndExpand"
+                                       VerticalOptions="CenterAndExpand"
+                                   FontSize="{Binding Path = Value}"
+                                   >
+                                    <Label.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <On Platform="iOS" Value="Optician Sans"/>
+                                            <On Platform="Android" Value="Optiker-K.ttf#Optician Sans" />
+                                            <On Platform="UWP" Value="Assets/Fonts/Optiker-K.ttf#Optician Sans" />
+                                        </OnPlatform>
+                                    </Label.FontFamily>
+                                </Label>
+                                
+                            </StackLayout>
+                        </ViewCell>
+                        <ViewCell>
+                            <Slider x:Name="slider"
+                                        Value="0"
+                                        Maximum="500"
+                                        VerticalOptions="CenterAndExpand" />
+                        </ViewCell>
+                        <EntryCell 
+                            x:Name="ValorCalib" 
+                            BindingContext="{x:Reference Name=slider }"
+                            Text ="{Binding Path = Value }"
+                            Label="Entre com o valor medido"
+                            Keyboard="Numeric">                            
+                        </EntryCell>
+                        
+            </TableSection>
+            <TableSection Title="Calibração da Distância">
+                        
+            </TableSection>
+            
+        </TableRoot>
+    </TableView>    
+      
+            <Label 
+                x:Name="LblRodape"
+                Text="Calibre o App de acordo com seu  Cell"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+            
+        </StackLayout>
+    </ContentPage.Content>
+    
+    
+</ContentPage>
