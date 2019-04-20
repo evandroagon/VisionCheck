@@ -2,85 +2,137 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VisionCheck.View.Page1">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="plainButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#eee"/>
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="BorderRadius" Value="0"/>
-                <Setter Property="FontSize" Value="40" />
-            </Style>
-            <Style x:Key="darkerButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#ddd"/>
-                <Setter Property="TextColor" Value="Black" />
-                <Setter Property="BorderRadius" Value="50"/>
-                <Setter Property="FontSize" Value="40" />
-            </Style>
-            <Style x:Key="orangeButton" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#E8AD00"/>
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="BorderRadius" Value="50"/>
-                <Setter Property="FontSize" Value="40" />
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    <ContentPage.Content>
-        <StackLayout Padding="2,2,2,2">
-        
-        <Grid x:Name="controlGrid" RowSpacing="1" ColumnSpacing="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="5" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="300" />
-                <RowDefinition Height="*" />
-                <RowDefinition Height="5" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5" />
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="150" />
-                <ColumnDefinition Width="5" />
-            </Grid.ColumnDefinitions>
 
-            <Label x:Name="labelContaCliques"
-                   Text="Welcome to ImageButton"
-                   Grid.Row="2" Grid.Column="2"
-                   Grid.ColumnSpan="2"
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS" Value="0, 20, 0, 0" />
+            <On Platform="Android, UWP" Value="0" />
+        </OnPlatform>
+    </ContentPage.Padding>
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <GridLength x:Key="dividerThickness">2</GridLength>
+
+                <Style TargetType="BoxView">
+                    <Setter Property="Color" Value="Accent" />
+                </Style>
+
+                <Style TargetType="Label">
+                    <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                    <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+                </Style>
+
+                <Style x:Key="plainButton" TargetType="Button">
+                    <Setter Property="BackgroundColor" Value="#eee"/>
+                    <Setter Property="TextColor" Value="Black" />
+                    <Setter Property="BorderRadius" Value="0"/>
+                    <Setter Property="FontSize" Value="40" />
+                </Style>
+
+                <Style x:Key="darkerButton" TargetType="Button">
+                    <Setter Property="BackgroundColor" Value="#ddd"/>
+                    <Setter Property="TextColor" Value="Black" />
+                    <Setter Property="BorderRadius" Value="50"/>
+                    <Setter Property="FontSize" Value="40" />
+                </Style>
+
+                <Style x:Key="orangeButton" TargetType="Button">
+                    <Setter Property="BackgroundColor" Value="#E8AD00"/>
+                    <Setter Property="TextColor" Value="White" />
+                    <Setter Property="BorderRadius" Value="50"/>
+                    <Setter Property="FontSize" Value="40" />
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>      
+       
+        
+       
+            <Grid.RowDefinitions>
+                    <RowDefinition Height="{StaticResource dividerThickness}" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="{StaticResource dividerThickness}" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="{StaticResource dividerThickness}" />
+                    <RowDefinition Height="100" />
+                    <RowDefinition Height="{StaticResource dividerThickness}" />
+               </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="{StaticResource dividerThickness}" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="{StaticResource dividerThickness}" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="{StaticResource dividerThickness}" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="{StaticResource dividerThickness}" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="{StaticResource dividerThickness}" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="{StaticResource dividerThickness}" />
+                    <ColumnDefinition Width="5" />
+                    <ColumnDefinition Width="{StaticResource dividerThickness}" />
+                </Grid.ColumnDefinitions>
+
+                <BoxView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="13" />
+                <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="13" />
+                <BoxView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="13" />
+                <BoxView Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="13" />
+               
+
+                <BoxView Grid.Row="0" Grid.Column="0" Grid.RowSpan="7" />
+                <BoxView Grid.Row="0" Grid.Column="2" Grid.RowSpan="7" />
+                <BoxView Grid.Row="0" Grid.Column="4" Grid.RowSpan="7" />
+                <BoxView Grid.Row="0" Grid.Column="6" Grid.RowSpan="7" />
+                <BoxView Grid.Row="0" Grid.Column="8" Grid.RowSpan="7" />
+                <BoxView Grid.Row="0" Grid.Column="10" Grid.RowSpan="7" />
+                <BoxView Grid.Row="0" Grid.Column="12" Grid.RowSpan="7" />
+
+                <Label x:Name="labelContaCliques"
+                   Text="E"
+                   Grid.Row="1" Grid.Column="5"
+                   Grid.ColumnSpan="3"
+                   Grid.RowSpan="3"
                    FontSize="50"
                    FontAttributes="Bold"                  
                    VerticalOptions="Center" 
-                   HorizontalOptions="Center">
+                   HorizontalOptions="Center"
+                   >
+                   
             </Label>
             <Button
                
-                Grid.Row="3" Grid.Column="2"
+                Grid.Row="5" Grid.Column="5"
                 Style="{StaticResource orangeButton}"    
                 Grid.ColumnSpan="1"
                 Image="back.png"
                 Clicked="OnImageButtonClicked" 
-                VerticalOptions="CenterAndExpand"                 
-                HorizontalOptions="EndAndExpand"
-                WidthRequest="100"
-                HeightRequest="100">
+                VerticalOptions="Center"                 
+                HorizontalOptions="Center"
+                WidthRequest="50"
+                HeightRequest="50">
                 
             </Button>
 
             <Button 
-            Grid.Row="3" Grid.Column="3"                
+            Grid.Row="5" Grid.Column="7"                
             Style="{StaticResource orangeButton}" 
-            Grid.ColumnSpan="3"
+            Grid.ColumnSpan="1"
             Image="play.png" 
-            WidthRequest="100"
-            HeightRequest="100"
+            WidthRequest="50"
+            HeightRequest="50"
             Clicked="ImageButton_Clicked"
-            VerticalOptions="CenterAndExpand" 
-            HorizontalOptions="StartAndExpand">                
-            </Button>           
+            VerticalOptions="Center" 
+            HorizontalOptions="Center">                
+            </Button>
+        
+            <Label Text="20/20"
+                   HorizontalOptions="Start"
+               Grid.Row="1" Grid.Column="3" />
 
-        </Grid>
-        </StackLayout>
-    </ContentPage.Content>
+            <Label Text="Snellen"
+               Grid.Row="5" Grid.Column="9" />
+
+    </Grid>      
+    
 </ContentPage>
     

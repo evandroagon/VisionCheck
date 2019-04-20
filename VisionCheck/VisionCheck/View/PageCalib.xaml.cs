@@ -15,9 +15,9 @@ namespace VisionCheck.View
 
         {
             double distancia = 1.0;
-            double fator = 34.37;
+            double fator = 1;
             InitializeComponent();
-            slider.Value = 100 + (fator * distancia);
+            slider.Value = 5 * (fator * distancia);
 
 
             

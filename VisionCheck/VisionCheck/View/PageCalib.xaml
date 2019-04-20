@@ -6,8 +6,7 @@
     <StackLayout>
 
             <TableView Intent="Settings" HasUnevenRows="true">
-        <TableRoot>
-            
+        <TableRoot>            
             <TableSection Title="configurações">
                 <SwitchCell Text="Mostrar Escala" />
                 <SwitchCell Text="Escala ligada" On="true" />
@@ -15,14 +14,14 @@
             <TableSection Title="Calibração da Tela">
                         <ViewCell>
                             <StackLayout Orientation="Vertical"
-                                         HeightRequest="400"
+                                         
                                          >
                                 <Label Text="E"                                      
                                    BindingContext="{x:Reference Name=slider }"
                                    TextColor="Accent"
                                        HorizontalOptions="CenterAndExpand"
                                        VerticalOptions="CenterAndExpand"
-                                   FontSize="{Binding Path = Value}"
+                                   FontSize="200"
                                    >
                                     <Label.FontFamily>
                                         <OnPlatform x:TypeArguments="x:String">
@@ -37,8 +36,8 @@
                         </ViewCell>
                         <ViewCell>
                             <Slider x:Name="slider"
-                                        Value="0"
-                                        Maximum="500"
+                                        Value="0.0"
+                                        Maximum="10.0"
                                         VerticalOptions="CenterAndExpand" />
                         </ViewCell>
                         <EntryCell 
