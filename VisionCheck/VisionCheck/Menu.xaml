@@ -2,7 +2,8 @@
 <MasterDetailPage   xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="VisionCheck.Menu" Title="Master"
-                    MasterBehavior="Popover"> <!-- Popover = faz menu fechar e abrir-->
+                    MasterBehavior="Popover">
+    <!-- Popover = faz menu fechar e abrir-->
     <MasterDetailPage.Master>
         <ContentPage Title="Menu" Padding="0">
             <ContentPage.Content>
@@ -22,16 +23,16 @@
                         <Image
                             Grid.Column="1"
                             Grid.Row="1"
-                            Source="XamarinLogo.png"
+                            Source="VisionCheckLogoRound.png"
                             VerticalOptions="CenterAndExpand"                 
                             HorizontalOptions="EndAndExpand">
-                            
+
                         </Image>
                         <Label
                           Grid.Column="1"
                           Grid.Row="2"
                           Text="VisualCheck"
-                          TextColor="White" FontSize="Large"/>
+                          TextColor="White"/>
                     </Grid>
 
                     <TableView Intent="Menu">
@@ -44,7 +45,7 @@
 
                             <ViewCell Tapped="GoPage2">
                                 <StackLayout Padding="15,10">
-                                    <Label Text="Page 2" VerticalTextAlignment="Center"/>
+                                    <Label Text="Teste Ishihara" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                             </ViewCell>
 
@@ -56,6 +57,11 @@
                             <ViewCell Tapped="GoPageCalib">
                                 <StackLayout Padding="15,10">
                                     <Label Text="Calibração" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                                </ViewCell>
+                            <ViewCell Tapped="GoListView">
+                                <StackLayout Padding="15,10">
+                                    <Label Text="Resultados" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                             </ViewCell>
 

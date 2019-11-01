@@ -3,67 +3,112 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VisionCheck.View.PageCalib">
     <ContentPage.Content>
-    <StackLayout>
+        <StackLayout >
 
             <TableView Intent="Settings" HasUnevenRows="true">
-        <TableRoot>            
-            <TableSection Title="configurações">
-                <SwitchCell Text="Mostrar Escala" />
-                <SwitchCell Text="Escala ligada" On="true" />
-            </TableSection>
-            <TableSection Title="Calibração da Tela">
+
+                <TableRoot>
+                    <TableSection Title="Configurações">
+                        <SwitchCell Text="Mostrar Escala" On="True"/>
+                        <SwitchCell Text="Escala ligada" On="true" />
+                    </TableSection>
+                    <TableSection Title="Calibração da Tela">
                         <ViewCell>
-                            <StackLayout Orientation="Vertical"
-                                         
-                                         >
-                                <Label Text="E"                                      
-                                   BindingContext="{x:Reference Name=slider }"
-                                   TextColor="Accent"
-                                       HorizontalOptions="CenterAndExpand"
-                                       VerticalOptions="CenterAndExpand"
-                                   FontSize="200"
-                                   >
+
+                            <StackLayout Orientation="Horizontal">
+                                <Label x:Name="LabelReferencia"
+                    Text="E"
+                    TextColor="#000"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    FontSize="100">
                                     <Label.FontFamily>
                                         <OnPlatform x:TypeArguments="x:String">
                                             <On Platform="iOS" Value="Optician Sans"/>
-                                            <On Platform="Android" Value="Optiker-K.ttf#Optician Sans" />
-                                            <On Platform="UWP" Value="Assets/Fonts/Optiker-K.ttf#Optician Sans" />
+                                            <On Platform="Android" Value="Optiker-K.ttf#Optician Sans"/>
+                                            <On Platform="UWP" Value="Assets/Fonts/Optiker-K.ttf#Optician Sans"/>
                                         </OnPlatform>
                                     </Label.FontFamily>
                                 </Label>
-                                
+                                <Label x:Name="LabelE"
+                    Text="E"
+                    BindingContext="{x:Reference Name=slider}"
+                    TextColor="#000"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                   FontSize="100">
+
+                                    <Label.FontFamily>
+                                        <OnPlatform x:TypeArguments="x:String">
+                                            <On Platform="iOS" Value="Optician Sans"/>
+                                            <On Platform="Android" Value="Optiker-K.ttf#Optician Sans"/>
+                                            <On Platform="UWP" Value="Assets/Fonts/Optiker-K.ttf#Optician Sans"/>
+                                        </OnPlatform>
+                                    </Label.FontFamily>
+                                </Label>
+
                             </StackLayout>
                         </ViewCell>
                         <ViewCell>
                             <Slider x:Name="slider"
-                                        Value="0.0"
-                                        Maximum="10.0"
-                                        VerticalOptions="CenterAndExpand" />
+                                Value="5.0"
+                                Maximum="10.0"
+                                Margin="10"
+                                VerticalOptions="CenterAndExpand" />
                         </ViewCell>
-                        <EntryCell 
-                            x:Name="ValorCalib" 
-                            BindingContext="{x:Reference Name=slider }"
+
+                    </TableSection>
+                    <TableSection Title="Calibração da Distância">
+                        <EntryCell
+                            x:Name="ValorCalib"
+                            BindingContext="{x:Reference Name=slider}"
                             Text ="{Binding Path = Value }"
                             Label="Entre com o valor medido"
-                            Keyboard="Numeric">                            
+                            Keyboard="Telephone">
                         </EntryCell>
-                        
-            </TableSection>
-            <TableSection Title="Calibração da Distância">
-                        
-            </TableSection>
-            
-        </TableRoot>
-    </TableView>    
-      
-            <Label 
-                x:Name="LblRodape"
-                Text="Calibre o App de acordo com seu  Cell"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            
+                        <EntryCell
+                            x:Name="ValorDistancia"
+                            BindingContext="{x:Reference Name=ValorDistancia}"
+                            Text ="{Binding Path = Text }"
+                            Label="Distânca da tela em cm"
+                            Keyboard="Telephone">
+                        </EntryCell>
+
+
+
+                    </TableSection>
+
+                </TableRoot>
+            </TableView>
+
+            <Label
+          x:Name="LblRodape"
+          Text="Calibre o App de acordo com seu  Cell"
+          VerticalOptions="CenterAndExpand"
+          HorizontalOptions="CenterAndExpand" />
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+
+                <Button Text="Salvar"
+                    Clicked="Button_Clicked"
+                    IsVisible="False"
+                    BackgroundColor="#1976D2"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand">
+                </Button>
+
+                <Button Text="Carregar"
+                    Clicked="Button_Carregar_Clicked"
+                    IsVisible="False"
+                    BackgroundColor="#1976D2"
+                    VerticalOptions="Center"
+                    HorizontalOptions="FillAndExpand">
+                </Button>
+            </StackLayout>
+            <Label x:Name="Label" />
         </StackLayout>
+
     </ContentPage.Content>
-    
-    
+
+
 </ContentPage>

@@ -1,5 +1,96 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="VisionCheck.View.Page2">   
+             x:Class="VisionCheck.View.Page2"
+             BackgroundColor="#FAFAFA">
+    <ContentPage.Content>
+
+        <StackLayout BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,10">
+
+
+
+            <Label Text="Teste de Ishihara" TextColor="White" BackgroundColor="Black" HorizontalOptions="Center" VerticalOptions="Start" Margin="5,5,0,5">
+
+            </Label>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Label x:Name="NrSlide"
+                       Text="Slide Nr.:" Margin="10,5,80,5" TextColor="Black">
+                </Label>
+                <Label x:Name="LblPorcent" Text="%" Margin="80,0,10,0" HorizontalOptions ="End" TextColor="Black">
+
+                </Label>
+            </StackLayout>
+            <ProgressBar 
+                         x:Name="progressIshihara" BackgroundColor="Gray"
+                         Progress="0.0"
+                         HorizontalOptions="Center" 
+                         WidthRequest="400" 
+                         HeightRequest="20"
+                         VerticalOptions="Start" >
+
+            </ProgressBar>
+            <Image x:Name="ImageIshihara" Margin="0,30,0,10"
+                   HeightRequest="320"
+                   Aspect="AspectFit"
+                   HorizontalOptions="Fill" VerticalOptions="Fill">
+            </Image>
+
+
+            <StackLayout HorizontalOptions="Fill" VerticalOptions="End" Orientation="Horizontal" BackgroundColor="white">
+
+                <Button x:Name="Btn1"    
+                        Text="1?"
+                        HorizontalOptions="FillAndExpand" 
+                        BorderRadius="10" 
+                        BackgroundColor="#1481C9" 
+                        BorderWidth="0" 
+                        BorderColor="Black" 
+                        VerticalOptions="Center"
+                        Clicked="ButtonOnClick"
+                        CommandParameter="{Binding Source={x:Reference Btn1}}"
+                        Padding="2" 
+                        Margin="2">
+                </Button>
+                <Button x:Name="Btn2"
+                        Text="2?"
+                        HorizontalOptions="FillAndExpand" 
+                        BorderRadius="10" 
+                        BackgroundColor="#1481C9" 
+                        BorderWidth="0" 
+                        BorderColor="Black" 
+                        Clicked="ButtonOnClick"                        
+                        Padding="2" 
+                        Margin="2">
+                </Button>
+            </StackLayout>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Fill">
+                <Button
+                x:Name="Btn3"
+                Text="3?" 
+                HorizontalOptions="FillAndExpand"  
+                BorderColor="Black" BorderWidth="0" 
+                BorderRadius="10"
+                Clicked="ButtonOnClick"
+                Padding="2" 
+                Margin="2"
+                BackgroundColor="#1481C9">
+
+                </Button>
+                <Button
+                x:Name="Btn4"
+                Text="Nenhuma" 
+                HorizontalOptions="FillAndExpand"  
+                BorderColor="Black" BorderWidth="0" 
+                BorderRadius="10"
+                Clicked="ButtonOnClick"
+                Padding="2" 
+                Margin="2"
+                BackgroundColor="#1481C9">
+                </Button>
+            </StackLayout>
+
+
+        </StackLayout>
+    </ContentPage.Content>
 </ContentPage>

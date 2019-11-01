@@ -19,9 +19,13 @@ namespace VisionCheck.UWP
     {
         public MainPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
+
 
             LoadApplication(new VisionCheck.App());
+
         }
+
+
     }
 }

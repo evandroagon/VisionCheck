@@ -7,27 +7,69 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Random = System.Random;
 
+
 namespace VisionCheck.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Page1 : ContentPage
     {
+        //private string tamanhoAtual = "20/20";
+        public double fatorAtual = 0;
+        public int index = 9; //indice 9 representa o tamanho 20/200 este é o tamnho inicial para o primeiro optotipo apresentado.
+//#pragma warning disable CS0414 // O campo "Page1.i" é atribuído, mas seu valor nunca é usado
+  //      private int i = 0;
+//#pragma warning restore CS0414 // O campo "Page1.i" é atribuído, mas seu valor nunca é usado
+        private double angulo_retorno;
+        private double angulo = 1.0;
 
 
-        
+
 
         public Page1()
+
         {
             InitializeComponent();
-            labelContaCliques.FontSize = 100;
+
+            Title = "Teste de Snnellen";
+            //var vetTamanhos = CriarVetTamanhos();
+
+
+
+            labelOptotipoE.FontSize = Session.Instance.UserTamanho;
+            labelOptotipoE.Text = "E";
+            labelOptotipoE.VerticalTextAlignment = TextAlignment.End;
+
+
+            if (fatorAtual == 0)
+            {
+                index = 9;
+                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+            }
+            if (index < Session.Instance.CriarVetTamanhos().Count)
+            {
+                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+                lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
+
+            }
+            else
+            {
+                index = 0;
+                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+                lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
+            }
+
+            angulo = GirarObjeto(label: labelOptotipoE);
+
 
         }
 
-        void GirarObjeto(Label label)
+
+
+        private double GirarObjeto(Label label)
         {
 
             int numLados = 0;
-            Double angulo = 0;
+            //Double angulo = 0;
             Random randNum = new Random();
 
             numLados = randNum.Next(0, 4);
@@ -38,77 +80,123 @@ namespace VisionCheck.View
 
 
                 case 0:
-
-                    //angulo = (labelContaCliques.Rotation);
-                    angulo = 0;
+                    angulo = 0.0f;
                     label.Rotation = angulo;
-
                     break;
                 case 1:
-                    //angulo = ((360 - labelContaCliques.Rotation)+90);
-                    //if (angulo >=360) {
-                    //angulo = angulo - 360;
-                    //    .Rotation = angulo;
-                    //}       
-                    angulo = 90;
+                    angulo = 90.0f;
                     label.Rotation = angulo;
                     break;
                 case 2:
-                    //angulo = ((360 - labelContaCliques.Rotation) + 180);
-                    //if (angulo >= 360)
-                    //{
-                    //   angulo = angulo - 360;
-                    //    labelContaCliques.Rotation = angulo;
-                    //}
-                    angulo = 180;
+                    angulo = 180.0f;
                     label.Rotation = angulo;
                     break;
                 case 3:
-                    //angulo = ((360 - labelContaCliques.Rotation) + 270);
-                    //if (angulo >= 360)
-                    //{
-                    //    angulo = angulo - 360;
-                    //   labelContaCliques.Rotation = angulo;
-                    // }
-                    angulo = 270;
+                    angulo = 270.0f;
                     label.Rotation = angulo;
                     break;
             }
 
+            return (angulo);
+        }
 
+        private void BackButtonClicked(object sender, EventArgs e)
+        {
+            angulo = GirarObjeto(labelOptotipoE);  //variavel angulo recebe o valor do 
+                                                   //angulo de giro que será utilizada para verificar se o usuario acertou a resposta
+            index++;
+            if (fatorAtual == 0)
+            {
+                index = 1;
+                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+            }
+            if (index < Session.Instance.CriarVetTamanhos().Count)
+            {
+                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+                lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
 
-            //label.Text = $"E";
+            }
+            else
+            {
+                index = 0;
+                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+                lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
+            }
+            Session.Instance.CriarVetTamanhos()[index].angulo = angulo;
+            labelOptotipoE.FontSize = (Session.Instance.UserTamanho / 10 * fatorAtual);
+            labelOptotipoE.HorizontalTextAlignment = TextAlignment.Center;
+            labelOptotipoE.Text = $"E";
+            //return angulo; // retorna o angulo rosteado para comparar com a resposta do usuário
 
         }
 
-        void ImageButton_Clicked(object sender, EventArgs e)
+        private void NextButtonClicked(object sender, EventArgs e)
         {
-            GirarObjeto(labelContaCliques);
-            labelContaCliques.FontSize = (labelContaCliques.FontSize - labelContaCliques.FontSize * 1.1); ; ;
-            labelContaCliques.Text = $"E";
 
-            //labelContaCliques.Text = $"{randNum} ImageButton click{(randNum.Next(1, 4))? "" : "s")}";
+            abrePaginaRespostas(angulo_retorno, EventArgs.Empty);
 
         }
 
-
-
-        void OnImageButtonClicked(object sender, EventArgs e)
+        private async void abrePaginaRespostas(object sender, EventArgs e)
         {
 
-            GirarObjeto(labelContaCliques);
-            labelContaCliques.FontSize = (labelContaCliques.FontSize + labelContaCliques.FontSize * 1.1); ; ;
-            labelContaCliques.Text = $"E";
+            // criando a pagina de respostas como modalPage e amarrando um método ao ModalHandler
+            var paginaRespostas = new Page3();
+            //double angulo_retorno = 0;
+            paginaRespostas.ModalHandler += (o, args) =>
+            { // aqui tarefas realizadas após o retorno da pagina modal
+                angulo_retorno = (double)o;
+                if (angulo == angulo_retorno)
+                {
+                    //debugando repostas Ok funcioando beleza
+                    //System.Console.WriteLine("DEBUG - " + "angulo:" + angulo + "angulo retorno" + angulo_retorno);
+                    labelTipoExame.Text = ("angulo: " + angulo + "angulo retorno" + angulo_retorno + "Resp. Correta");
+                    labelTipoExame.TextColor = Color.Green;
 
-        }
 
-        void CalularFonteInicial(Label label, int FatorCalibracao)
+                }
+                else
+                {
+                    labelTipoExame.Text = ("Resposta Incorreta");
 
-        {
-             // cria função para ler o valor de um arquivo
-                                  // valor deve ser calibrado em uma atela com auxilido de uma regua            label.FontSize = 100 * FatorCalibracao;
-        
+                }
+
+                if (index >= 1) { index--; }
+                if (fatorAtual == 0)
+                {
+                    index = 1;
+                    fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+                }
+                if (index < Session.Instance.CriarVetTamanhos().Count)
+                {
+                    fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+                    lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
+
+                }
+                else
+                {
+                    index = 0;
+                    fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+                    lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
+                }
+                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+                labelOptotipoE.FontSize = (Session.Instance.UserTamanho / 10 * fatorAtual);
+
+                labelOptotipoE.Text = $"E";
+
+
+                angulo = GirarObjeto(labelOptotipoE); // gira o optotipo
+            };
+
+
+            await Navigation.PushModalAsync(paginaRespostas, true);
+
+
+
+
         }
     }
 
 }
+
+

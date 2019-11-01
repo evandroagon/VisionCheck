@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VisionCheck.MenuDetail">
     <ContentPage.Content Title="Detail" Padding="0">
-        <StackLayout >
-            <Label Text="Detail!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="white" Margin="0,5,0,0">
+            <Image Source="back_panel_menu_detail.png" Margin="0"
+               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
+            <Label Text="Fill" BackgroundColor="Blue" VerticalOptions="FillAndExpand"/>
+            <BoxView BackgroundColor="Orange" HeightRequest="1"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

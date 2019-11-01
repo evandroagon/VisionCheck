@@ -3,10 +3,100 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VisionCheck.View.Page3">
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Page3"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout BackgroundColor="White">
+
+            <Grid Padding="40"
+                        BackgroundColor="white">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+
+                <StackLayout Grid.Row="0" Grid.Column="0"
+                                 VerticalOptions="Fill" 
+                                 HorizontalOptions="Fill">
+
+                    <Button
+                        x:Name="Button0"
+                        Padding="0"   
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        BorderRadius="10"
+                        BackgroundColor="AliceBlue"
+                        Image="EPreto.png"
+                        BorderWidth="1"
+                        Clicked="Button0_Clicked"
+                        BorderColor="Black"
+                        >
+
+                    </Button>
+                </StackLayout>
+
+                <StackLayout Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand">
+                    <Button
+                        x:Name="Button90"
+                        Padding="0"
+                        Rotation="0"
+                        BorderRadius="10"
+                        BorderWidth="1"
+                        BorderColor="Black"
+                        BackgroundColor="AliceBlue"
+                        Clicked="Button90_Clicked"
+                        Image="EPreto90.png">
+                    </Button>
+                </StackLayout>
+                <StackLayout Grid.Row="1" Grid.Column="1" VerticalOptions="Fill">
+                    <Button  
+                       x:Name="Button180"
+                        Padding="0"
+                        Rotation="0"
+                        BorderRadius="10"
+                        BorderWidth="1"
+                        BorderColor="Black"
+                        BackgroundColor="AliceBlue"
+                        Image="EPreto180.png"
+                       Clicked="Button180_Clicked"
+                            >
+                    </Button>
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" Grid.Column="0" HorizontalOptions="Fill" VerticalOptions="Fill" >
+                    <Button
+                        x:Name="Button270"
+                        Padding="0"
+                        Rotation="0"                      
+                        BorderRadius="10"
+                        BorderWidth="1"
+                        BorderColor="Black"
+                        BackgroundColor="AliceBlue"
+                        Image="EPreto270.png" 
+                        Clicked="Button270_Clicked">
+                    </Button>
+
+                </StackLayout>
+
+            </Grid>
+
+            <StackLayout VerticalOptions="CenterAndExpand" Orientation="Vertical" Margin="40">
+                <Button 
+                    BackgroundColor="#1481C9"
+                    Text="Nenhuma"
+                    VerticalOptions="CenterAndExpand"
+                    BorderRadius="10">
+
+                </Button>
+            </StackLayout>
+
         </StackLayout>
+
+
+
     </ContentPage.Content>
 </ContentPage>
+    
