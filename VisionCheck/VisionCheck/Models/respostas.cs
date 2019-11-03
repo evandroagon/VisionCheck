@@ -6,6 +6,7 @@ namespace VisionCheck.Models
 
 
 {
+    /**
     public class Respostas
     {
 
@@ -110,7 +111,7 @@ namespace VisionCheck.Models
             public string fake { get; set; }
         }
     
-
+    **/
 
 
 }

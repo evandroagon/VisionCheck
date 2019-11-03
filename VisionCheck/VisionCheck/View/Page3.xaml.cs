@@ -13,7 +13,7 @@ namespace VisionCheck.View
     public partial class Page3 : ContentPage
     {
         public event EventHandler ModalHandler;
-        static List<Respostas> respostas;
+        //static List<Respostas> respostas;
 
         public Page3()
         {
@@ -21,7 +21,7 @@ namespace VisionCheck.View
             double resposta = 0.0;
 #pragma warning restore CS0219 // A variável "resposta" é atribuída, mas seu valor nunca é usado
             InitializeComponent();
-            respostas = new List<Respostas>();
+            //respostas = new List<Respostas>();
 
         }
 

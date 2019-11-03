@@ -3,10 +3,8 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-
 namespace VisionCheck.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -16,24 +14,27 @@ namespace VisionCheck.View
 
 
 
-        public ListViewPage1()
+        public ListViewPage1(ObservableCollection<Models.VetImagens> list)
         {
             InitializeComponent();
-                      
-
+            Title = "Resultado";
 
             ObservableCollection<Models.VetImagens>
                 items = new ObservableCollection<Models.VetImagens>();
-            
-                for (int v = 0; v <= 23-1; v++)
+                for (int v = 0; v <= 23; v++)
             {
-                items.Add(new Models.VetImagens()
+                items.Add(new Models.VetImagens
                 {
-                    id = Models.imagem.varImagens[v].id,
-                    normal = Models.imagem.varImagens[v].normal,
-                    resposta = Models.imagem.varImagens[v].resposta,
-                    value = Models.imagem.varImagens[v].value});
-                }
+                    id = "Nr.:" + Models.imagem.varImagem[v].id,
+                    value =Models.imagem.varImagem[v].value,
+                    normal ="Normal:" + Models.imagem.varImagem[v].normal +
+                    "\r\nDaltonico:" + Models.imagem.varImagem[v].daltonico +
+                    "\r\nTotal:" + Models.imagem.varImagem[v].total,
+                    resposta =" | Resposta:" + Models.imagem.varImagem[v].resposta
+                    
+                });
+
+            }
 
 
 

@@ -11,6 +11,7 @@ namespace VisionCheck
         {
             InitializeComponent();
             Detail = new NavigationPage(new MenuDetail());
+         
         }
 
         private void GoPage1(object sender, System.EventArgs e)
@@ -42,7 +43,7 @@ namespace VisionCheck
         private void GoListView(object sender, System.EventArgs e)
         {
             Detail.Navigation.PopToRootAsync();
-            Detail.Navigation.PushAsync(new ListViewPage1());
+            Detail.Navigation.PushAsync(new ListViewPage1(Models.imagem.varImagem));
             IsPresented = false;
         }
 

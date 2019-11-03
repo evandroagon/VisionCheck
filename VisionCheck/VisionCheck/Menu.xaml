@@ -59,11 +59,11 @@
                                     <Label Text="Calibração" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                                 </ViewCell>
-                            <ViewCell Tapped="GoListView">
+                            <!--ViewCell Tapped="GoListView">
                                 <StackLayout Padding="15,10">
                                     <Label Text="Resultados" VerticalTextAlignment="Center"/>
                                 </StackLayout>
-                            </ViewCell>
+                            </-->
 
                         </TableSection>
                     </TableView>

@@ -37,6 +37,7 @@ namespace VisionCheck
                             Session.Instance.UserFator = fator; //relação entre tamanho medido e tamanho esperado
                             Session.Instance.UserTamanho = tamanho;
                             Session.Instance.UserTamanhoMedido = tamanhoMedido;
+                            
                         }
                     }
                 }
@@ -59,7 +60,7 @@ namespace VisionCheck
 
         public List<VetTamanhos> CriarVetTamanhos()
         {
-            var  varTamanhos = new List<VetTamanhos>
+             var  varTamanhos = new List<VetTamanhos>
            {
                 new VetTamanhos() { value = 15.0/20, name = "20/15",   resposta = "", angulo=0.0},
                 new VetTamanhos() { value = 20.0/20, name = "20/20",   resposta = "", angulo=0.0},
