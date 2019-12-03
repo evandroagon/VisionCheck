@@ -15,6 +15,7 @@ namespace VisionCheck
 		public MenuDetail ()
 		{
 			InitializeComponent ();
+            Title = "Visual Check";
 		}
 	}
 }

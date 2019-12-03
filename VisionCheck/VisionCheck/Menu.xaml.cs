@@ -17,7 +17,7 @@ namespace VisionCheck
         private void GoPage1(object sender, System.EventArgs e)
         {
             Detail.Navigation.PopToRootAsync();  // elimina a pilha de paginas
-            Detail.Navigation.PushAsync(new Page1());
+            Detail.Navigation.PushAsync(new Page4());
             IsPresented = false; // faz menu se esconder apos selecionar uma pagina
         }
         private void GoPage2(object sender, System.EventArgs e)

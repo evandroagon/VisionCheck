@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VisionCheck.View.Page4">
+    <ContentPage.Content>
+        <StackLayout HorizontalOptions="FillAndExpand" Margin="5,10,5,10">
+            <Label Text="Ajuda!" 
+                   FontAttributes="Bold"
+                   FontSize="24">
+                
+            </Label>
+            <Label Text="Teste de Acuidade Visual" 
+                   FontSize="24">
+                
+            </Label>
+            <Label Text="Tumbling E:" 
+                   FontSize="24">
+
+            </Label>
+            <Label FontSize="Default" 
+                   TextColor="#47525E" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Start"
+                   Text="Instruções basicas:"
+                   HorizontalOptions="StartAndExpand" 
+                   LineBreakMode="WordWrap"/>
+            <Label FontSize="Default" 
+                   TextColor="#47525E" 
+                   FontAttributes="Bold" 
+                   HorizontalTextAlignment="Start"
+                   Text="Nos testes de acuidade visual tubling feche um dos olhos. Mantenha a tela do aplicativo na distância calibrada. E tente identificar a direção das pernas da letra E. Aperte a seta de navegação para prosseguir adiante quando solicitado indique a resposta que corresponde ao que você visualizou. Repita o processo até o final do teste." 
+                   HorizontalOptions="StartAndExpand" 
+                   LineBreakMode="WordWrap"/>
+            <Button 
+                x:Name="ButtonGoTumbling"                                     
+                Image="next_button.png"                          
+                Clicked="GoTumblingClicked"
+                BackgroundColor="White"
+                Padding="10"
+                WidthRequest="80"
+                HeightRequest="80"
+                VerticalOptions="EndAndExpand"
+                HorizontalOptions="End">
+            </Button>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

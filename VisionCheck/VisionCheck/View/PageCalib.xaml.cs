@@ -43,21 +43,29 @@ namespace VisionCheck.View
             //recuperar valores passados na classe Session responsável por troca de valores entre as várias telas
             double distancia = Session.Instance.UserDistancia; // distancia do olho até o optotipo informada pelo usuário
             double fator = Session.Instance.UserFator; // fator de correção calculado dividindo o tamanho medido de um optotipo com fonte 100 real na tela pelo valor da altura de referencia.
-            double tamanho = Session.Instance.UserTamanho;
+            double tamanho = Session.Instance.UserTamanho; //tamanho para 20/20
             double tamanhoMedido = Session.Instance.UserTamanhoMedido;  //tamanho informado para uma fonte tamanho 100
+            bool mostrarEscala = Session.Instance.UserMostrarEsc;
+            bool mostrarDistancia = Session.Instance.UserMostrarDist;
+            bool contrate_Alto = Session.Instance.UserContrasteAlto;
+
 
             angle = (5.0 / 60.0); //angulo 5' em graus
             radians = angle * (Math.PI / 180); //convertendo em radianos
             result = Math.Tan(radians); //tangente do angulo de 5'
-            alturaReferencia = result * distancia;   //calculo da altura do optotipo teorico esperado em centimetros para a distancia informada
+            alturaReferencia = result * distancia;   //calculo da altura do optotipo teorico esperado em centimetros para a distancia informada (*20 para usar a distância do 20/400)
 
             InitializeComponent();
+            Title = "Calibração";
             App.Current.On<Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
             if (tamanho > 0)
             {
 
                 slider.Value = tamanhoMedido;
                 LabelE.FontSize = tamanho;
+                SwitchContrasteAlto.On = contrate_Alto; //recuperar configuração antiga
+                SwitchDistancia.On = mostrarDistancia;
+                SwitchMostrarEscala.On = mostrarEscala;
                 if (distancia > 0)
                 {
                     ValorDistancia.Text = distancia.ToString();
@@ -75,14 +83,14 @@ namespace VisionCheck.View
             {
 
                 distancia = Convert.ToDouble(ValorDistancia.Text);
-                alturaReferencia = (result * distancia);
+                alturaReferencia = (result * distancia*20); //aqui altura calculada é 20/400 (multiplicado por 20 para dar tamanho do 20/400)
                 tamanhoMedido = slider.Value;
-                fator = (alturaReferencia * 10) / tamanhoMedido;
-                tamanho = 100 * fator;
+                fator = alturaReferencia / tamanhoMedido; //fator 20 (angulo do 20/400)
+                tamanho = 100 * fator;   // 100 é tamanho da fonte do optotipo de referenica para 20/400
                 Session.Instance.UserDistancia = distancia;
                 Session.Instance.UserFator = fator;
                 LabelE.FontSize = tamanho;
-                Session.Instance.UserTamanho = tamanho;
+                Session.Instance.UserTamanho = tamanho; // fonte a ser usada no 20/400
                 Session.Instance.UserTamanhoMedido = tamanhoMedido;
 
             };
@@ -93,15 +101,14 @@ namespace VisionCheck.View
             {
 
                 tamanhoMedido = slider.Value;
-                alturaReferencia = (result * distancia);
-                fator = (alturaReferencia * 10) / tamanhoMedido;
+                alturaReferencia = (result * distancia*20);
+                fator = (alturaReferencia) / tamanhoMedido;
                 tamanho = 100 * fator;
-                Session.Instance.UserDistancia = distancia;
+                
                 Session.Instance.UserFator = fator;
                 LabelE.FontSize = tamanho;
                 Session.Instance.UserTamanho = tamanho;
                 Session.Instance.UserTamanhoMedido = tamanhoMedido;
-
 
             };
 
@@ -109,6 +116,23 @@ namespace VisionCheck.View
 
 
         }
+
+        protected override void OnDisappearing()
+        {
+            base.OnDisappearing();
+            string my_preferences = "my_preferences";  // nome do repositorio de preferencias personalizado
+
+            double tamanhoMedido = Session.Instance.UserTamanhoMedido;
+            Preferences.Set("tamanhoMedido_p", tamanhoMedido, my_preferences);
+            double distancia = Session.Instance.UserDistancia;
+            Preferences.Set("distancia_p", distancia, my_preferences);
+            double fator = Session.Instance.UserFator;
+            Preferences.Set("fator_p", fator, my_preferences);
+            double tamanho = Session.Instance.UserTamanho;
+            Preferences.Set("tamanho_p", tamanho, my_preferences);
+
+        }
+
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
@@ -147,7 +171,6 @@ namespace VisionCheck.View
             Label.Text = "";
             if (resultado)
 
-
             {
                 string valor_distancia = "";
                 ValorDistancia.Text = Preferences.Get("key_distancia", valor_distancia);
@@ -164,6 +187,30 @@ namespace VisionCheck.View
 
 
             }
+        }
+
+        private void Mudar_Switch_Escala(object sender, ToggledEventArgs e)
+        {            
+            Session.Instance.UserMostrarEsc =SwitchMostrarEscala.On;
+            
+        }
+
+        private void Mudar_Switch_ContrateAlto(object sender, ToggledEventArgs e)
+        {
+            Session.Instance.UserContrasteAlto = SwitchContrasteAlto.On;
+            if (SwitchContrasteAlto.On)
+            {
+                SwitchContrasteAlto.Text = "Contraste Baixo:";
+            }
+            else
+            {
+                SwitchContrasteAlto.Text = "Contraste Alto:";
+            }
+        }
+
+            private void Mudar_SwitchDistancia(object sender, ToggledEventArgs e)
+        {
+            Session.Instance.UserMostrarDist = SwitchDistancia.On;
         }
     }
 }

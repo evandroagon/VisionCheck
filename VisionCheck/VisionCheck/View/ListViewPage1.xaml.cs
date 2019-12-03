@@ -10,10 +10,6 @@ namespace VisionCheck.View
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListViewPage1 : ContentPage
     {
-        //public ObservableCollection<Models.VetImagens> Items; // { get; set; }
-
-
-
         public ListViewPage1(ObservableCollection<Models.VetImagens> list)
         {
             InitializeComponent();

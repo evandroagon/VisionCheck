@@ -5,7 +5,7 @@
              BackgroundColor="#FAFAFA">
     <ContentPage.Content>
 
-        <StackLayout BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="End" Margin="0,0,0,10">
+        <StackLayout BackgroundColor="White" HorizontalOptions="Center" VerticalOptions="StartAndExpand" Margin="0,0,0,10">
 
 
 
@@ -29,8 +29,8 @@
                          VerticalOptions="Start" >
 
             </ProgressBar>
-            <Image x:Name="ImageIshihara" Margin="0,30,0,10"
-                   HeightRequest="320"
+            <Image x:Name="ImageIshihara" Margin="0,10,0,10"
+                   HeightRequest="250"
                    Aspect="AspectFit"
                    HorizontalOptions="Fill" VerticalOptions="Fill">
             </Image>

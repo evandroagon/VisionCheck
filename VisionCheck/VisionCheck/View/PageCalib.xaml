@@ -9,10 +9,14 @@
 
                 <TableRoot>
                     <TableSection Title="Configurações">
-                        <SwitchCell Text="Mostrar Escala" On="True"/>
-                        <SwitchCell Text="Escala ligada" On="true" />
+                        <SwitchCell Text="Mostrar Escala" On="True"
+                                    x:Name="SwitchMostrarEscala" OnChanged="Mudar_Switch_Escala"/>
+                        <SwitchCell Text="Contraste Alto" On="True" 
+                                    x:Name = "SwitchContrasteAlto" OnChanged="Mudar_Switch_ContrateAlto"/>
+                        <SwitchCell Text="Distânica" On="True" 
+                                    x:Name= "SwitchDistancia" OnChanged="Mudar_SwitchDistancia"/>
                     </TableSection>
-                    <TableSection Title="Calibração da Tela">
+                    <TableSection Title="Calibração da Tela Ref. 20/400">
                         <ViewCell>
 
                             <StackLayout Orientation="Horizontal">
@@ -36,8 +40,7 @@
                     TextColor="#000"
                     HorizontalOptions="CenterAndExpand"
                     VerticalOptions="CenterAndExpand"
-                   FontSize="100">
-
+                    FontSize="100">
                                     <Label.FontFamily>
                                         <OnPlatform x:TypeArguments="x:String">
                                             <On Platform="iOS" Value="Optician Sans"/>

@@ -152,6 +152,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
     <Content Include="back.png" />
+    <Content Include="back_button.png" />
     <Content Include="back_panel_menu_detail.png" />
     <Content Include="EPreto.png" />
     <Content Include="EPreto180.png" />
@@ -181,6 +182,7 @@
     <Content Include="ishihara_22.jpg" />
     <Content Include="ishihara_23.jpg" />
     <Content Include="ishihara_24.jpg" />
+    <Content Include="next_button.png" />
     <Content Include="play.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="SquareLogo48.png" />

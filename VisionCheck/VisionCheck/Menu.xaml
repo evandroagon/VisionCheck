@@ -26,7 +26,6 @@
                             Source="VisionCheckLogoRound.png"
                             VerticalOptions="CenterAndExpand"                 
                             HorizontalOptions="EndAndExpand">
-
                         </Image>
                         <Label
                           Grid.Column="1"
@@ -39,26 +38,25 @@
                         <TableSection>
                             <ViewCell Tapped="GoPage1">
                                 <StackLayout Padding="15,10">
-                                    <Label Text="Teste Snellen" VerticalTextAlignment="Center"/>
+                                    <Label Text="Teste de Visão Tumblin(E)" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                             </ViewCell>
 
                             <ViewCell Tapped="GoPage2">
                                 <StackLayout Padding="15,10">
-                                    <Label Text="Teste Ishihara" VerticalTextAlignment="Center"/>
+                                    <Label Text="Teste Ishihara (Cores)" VerticalTextAlignment="Center"/>
                                 </StackLayout>
-                            </ViewCell>
-
-                            <ViewCell Tapped="GoPage3">
-                                <StackLayout Padding="15,10">
-                                    <Label Text="Page 3" VerticalTextAlignment="Center"/>
-                                </StackLayout>
-                            </ViewCell>
+                            </ViewCell>                          
                             <ViewCell Tapped="GoPageCalib">
                                 <StackLayout Padding="15,10">
-                                    <Label Text="Calibração" VerticalTextAlignment="Center"/>
+                                    <Label Text="Configurações" VerticalTextAlignment="Center"/>
                                 </StackLayout>
                                 </ViewCell>
+                            <ViewCell Tapped="GoPage3">
+                                <StackLayout Padding="15,10">
+                                    <Label Text="Page 3" IsVisible="False" VerticalTextAlignment="Center"/>
+                                </StackLayout>
+                            </ViewCell>
                             <!--ViewCell Tapped="GoListView">
                                 <StackLayout Padding="15,10">
                                     <Label Text="Resultados" VerticalTextAlignment="Center"/>

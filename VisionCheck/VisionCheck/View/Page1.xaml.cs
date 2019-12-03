@@ -15,12 +15,13 @@ namespace VisionCheck.View
     {
         //private string tamanhoAtual = "20/20";
         public double fatorAtual = 0;
-        public int index = 9; //indice 9 representa o tamanho 20/200 este é o tamnho inicial para o primeiro optotipo apresentado.
-//#pragma warning disable CS0414 // O campo "Page1.i" é atribuído, mas seu valor nunca é usado
-  //      private int i = 0;
-//#pragma warning restore CS0414 // O campo "Page1.i" é atribuído, mas seu valor nunca é usado
+        public double Tamanho_base = Session.Instance.UserTamanho;
+        public int index = 14; //indice 9 representa o tamanho 20/400 este é o tamnho inicial para o primeiro optotipo apresentado.
         private double angulo_retorno;
         private double angulo = 1.0;
+        private string CorFundo = "#fefefe";
+        private string CorE = "#010101";
+        private string CorEscala = "#010101";
 
 
 
@@ -30,40 +31,68 @@ namespace VisionCheck.View
         {
             InitializeComponent();
 
-            Title = "Teste de Snnellen";
+            Title = "Teste de Snellen";
             //var vetTamanhos = CriarVetTamanhos();
 
 
 
             labelOptotipoE.FontSize = Session.Instance.UserTamanho;
+            labelTipoExame.Text = "Distância: " + Convert.ToString(Session.Instance.UserDistancia) + " cm";
             labelOptotipoE.Text = "E";
-            labelOptotipoE.VerticalTextAlignment = TextAlignment.End;
+            if (Session.Instance.UserContrasteAlto) //Define preferencias do usuário 
+            {
+                labelOptotipoE.TextColor = Color.FromHex(CorE);
+                labelOptotipoE.BackgroundColor = Color.FromHex(CorFundo);
+                labelTipoExame.TextColor = Color.FromHex(CorEscala);
+                labelTipoExame.BackgroundColor = Color.FromHex(CorFundo);
+                lblTamanho.TextColor = Color.FromHex(CorEscala);
+                lblTamanho.BackgroundColor = Color.FromHex(CorFundo);
+                lblTamanhoDec.TextColor = Color.FromHex(CorEscala);
+                lblTamanhoDec.BackgroundColor = Color.FromHex(CorFundo);
+                GridExame.BackgroundColor = Color.FromHex(CorFundo);
+                NextButton.BorderColor = Color.FromHex(CorFundo);
+            }
+            else
+            {
+                labelOptotipoE.TextColor = Color.FromHex(CorFundo);
+                labelOptotipoE.BackgroundColor = Color.FromHex(CorEscala);
+                labelTipoExame.TextColor = Color.FromHex(CorFundo);
+                labelTipoExame.BackgroundColor = Color.FromHex(CorEscala);
+                lblTamanho.TextColor = Color.FromHex(CorFundo);
+                lblTamanho.BackgroundColor = Color.FromHex(CorEscala);
+                lblTamanhoDec.TextColor = Color.FromHex(CorFundo);
+                lblTamanhoDec.BackgroundColor = Color.FromHex(CorEscala);
+                GridExame.BackgroundColor = Color.FromHex(CorEscala);
+                NextButton.BorderColor = Color.FromHex(CorFundo);
 
+            }
+            
+            //labelOptotipoE.VerticalTextAlignment = TextAlignment.End;
 
             if (fatorAtual == 0)
             {
-                index = 9;
+                index = 14;
                 fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+               
             }
             if (index < Session.Instance.CriarVetTamanhos().Count)
             {
                 fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
                 lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
-
+            
             }
             else
             {
                 index = 0;
                 fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
                 lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
+                UpdateTela(index);
             }
 
             angulo = GirarObjeto(label: labelOptotipoE);
-
+            UpdateTela(index);
 
         }
-
-
 
         private double GirarObjeto(Label label)
         {
@@ -100,6 +129,15 @@ namespace VisionCheck.View
             return (angulo);
         }
 
+        private void UpdateTela(int i)
+        {
+            lblTamanho.Text = "Snellen: " + Session.Instance.CriarVetTamanhos()[i].name;
+            lblTamanhoDec.Text = "Dec.: " + Math.Round(Session.Instance.CriarVetTamanhos()[i].value, 3)+
+                                             "\r\n"+ Math.Round(Session.Instance.CriarVetTamanhos()[i].value, 3)*100 +"%";
+            labelNrOptotipo.Text = "Nr.: " + Convert.ToString(i + 1);            
+
+        }
+
         private void BackButtonClicked(object sender, EventArgs e)
         {
             angulo = GirarObjeto(labelOptotipoE);  //variavel angulo recebe o valor do 
@@ -123,10 +161,11 @@ namespace VisionCheck.View
                 lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
             }
             Session.Instance.CriarVetTamanhos()[index].angulo = angulo;
-            labelOptotipoE.FontSize = (Session.Instance.UserTamanho / 10 * fatorAtual);
+            labelOptotipoE.FontSize =  Tamanho_base / (fatorAtual * 20);  //* 20 porque a referencia é o tamamho 20/400
             labelOptotipoE.HorizontalTextAlignment = TextAlignment.Center;
             labelOptotipoE.Text = $"E";
-            //return angulo; // retorna o angulo rosteado para comparar com a resposta do usuário
+            UpdateTela(index);
+            //return angulo; // retorna o angulo sorteado para comparar com a resposta do usuário
 
         }
 
@@ -152,8 +191,6 @@ namespace VisionCheck.View
                     //System.Console.WriteLine("DEBUG - " + "angulo:" + angulo + "angulo retorno" + angulo_retorno);
                     labelTipoExame.Text = ("angulo: " + angulo + "angulo retorno" + angulo_retorno + "Resp. Correta");
                     labelTipoExame.TextColor = Color.Green;
-
-
                 }
                 else
                 {
@@ -180,12 +217,10 @@ namespace VisionCheck.View
                     lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
                 }
                 fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
-                labelOptotipoE.FontSize = (Session.Instance.UserTamanho / 10 * fatorAtual);
-
+                labelOptotipoE.FontSize = Tamanho_base / (fatorAtual * 20);
                 labelOptotipoE.Text = $"E";
-
-
                 angulo = GirarObjeto(labelOptotipoE); // gira o optotipo
+                UpdateTela(index);
             };
 
 

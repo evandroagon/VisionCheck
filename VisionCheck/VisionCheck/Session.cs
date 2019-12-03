@@ -31,12 +31,18 @@ namespace VisionCheck
                             double tamanhoMedido = Preferences.Get("tamanhoMedido_p", 1.2, my_preferences);                        
                             double distancia = Preferences.Get("distancia_p", 40.0, my_preferences);             
                             double fator = Preferences.Get("fator_p", 1.0, my_preferences);                      
-                            double tamanho = Preferences.Get("tamanho_p", 100.0, my_preferences);                    
+                            double tamanho = Preferences.Get("tamanho_p", 100.0, my_preferences);
+                            bool contrasteAlto = Preferences.Get("contraste_alto_p", true, my_preferences);
+                            bool mostrarEsc = Preferences.Get("mostrar_esc", true, my_preferences);
+                            bool mostrarDist = Preferences.Get("mostrar_distancia", true, my_preferences);
 
                             Session.Instance.UserDistancia = distancia; //em metros
                             Session.Instance.UserFator = fator; //relação entre tamanho medido e tamanho esperado
-                            Session.Instance.UserTamanho = tamanho;
+                            Session.Instance.UserTamanho = tamanho;  // fonte para o 20/400 já calibrada
                             Session.Instance.UserTamanhoMedido = tamanhoMedido;
+                            Session.Instance.UserContrasteAlto = contrasteAlto;
+                            Session.Instance.UserMostrarEsc = mostrarEsc;
+                            Session.Instance.UserMostrarDist = mostrarDist;
                             
                         }
                     }
@@ -55,6 +61,9 @@ namespace VisionCheck
         public double UserTamanhoMedido { get; set; }
         public double UserDistancia { get; set; }
         public double UserFator { get; set; }
+        public bool UserContrasteAlto { get; set; }
+        public bool UserMostrarEsc { get; set; }
+        public bool UserMostrarDist { get; set; }
 
    
 
@@ -62,24 +71,23 @@ namespace VisionCheck
         {
              var  varTamanhos = new List<VetTamanhos>
            {
-                new VetTamanhos() { value = 15.0/20, name = "20/15",   resposta = "", angulo=0.0},
-                new VetTamanhos() { value = 20.0/20, name = "20/20",   resposta = "", angulo=0.0},
-                new VetTamanhos() { value = 30.0/20, name = "20/30",   resposta = "", angulo=0.0},
-                new VetTamanhos() { value = 40.0/20, name = "20/40",   resposta = "", angulo=0.0},
-                new VetTamanhos() { value = 50.0/20, name = "20/50",   resposta = "", angulo=0.0},
-                new VetTamanhos() { value = 60.0/20, name = "20/60",   resposta = "", angulo=0.0},
-                new VetTamanhos() { value = 70.0/20, name = "20/70",   resposta = "", angulo=0.0},
-                new VetTamanhos() { value = 80.0/20, name = "20/80",   resposta = "", angulo=0.0},
-                new VetTamanhos() { value = 100.0/20, name = "20/100", resposta = "", angulo=0.0},
-                new VetTamanhos() { value = 200.0/20, name = "20/200", resposta = "", angulo=0.0},
-                new VetTamanhos() { value = 300.0/20, name = "20/300", resposta = "", angulo=0.0},
-                new VetTamanhos() { value = 400.0/20, name = "20/400", resposta = "", angulo=0.0}
-
-            };
-            
+                new VetTamanhos() { value =  20.0/16.0, name = "20/16",   resposta = "", angulo=0.0},
+                new VetTamanhos() { value =  20.0/20.0, name = "20/20",   resposta = "", angulo=0.0},
+                new VetTamanhos() { value =  20.0/25.0, name = "20/25",   resposta = "", angulo=0.0},
+                new VetTamanhos() { value =  20.0/32.0, name = "20/32",   resposta = "", angulo=0.0},
+                new VetTamanhos() { value =  20.0/40.0, name = "20/40",   resposta = "", angulo=0.0},
+                new VetTamanhos() { value =  20.0/50.0, name = "20/50",   resposta = "", angulo=0.0},
+                new VetTamanhos() { value =  20.0/63.0, name = "20/63",   resposta = "", angulo=0.0},
+                new VetTamanhos() { value =  20.0/80.0, name = "20/80",   resposta = "", angulo=0.0},
+                new VetTamanhos() { value = 20.0/100.0, name = "20/100",  resposta = "", angulo=0.0},
+                new VetTamanhos() { value = 20.0/125.0, name = "20/125",  resposta = "", angulo=0.0},
+                new VetTamanhos() { value = 20.0/160.0, name = "20/160",  resposta = "", angulo=0.0},
+                new VetTamanhos() { value = 20.0/200.0, name = "20/200",  resposta = "", angulo=0.0},
+                new VetTamanhos() { value = 20.0/250.0, name = "20/250",  resposta = "", angulo=0.0},
+                new VetTamanhos() { value = 20.0/320.0, name = "20/320",  resposta = "", angulo=0.0},
+                new VetTamanhos() { value = 20.0/400.0, name = "20/400",  resposta = "", angulo=0.0},
+            };            
         return varTamanhos;
-
-
         }
 
 

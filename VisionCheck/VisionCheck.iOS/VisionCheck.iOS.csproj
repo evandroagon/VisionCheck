@@ -163,4 +163,112 @@
       <Name>VisionCheck</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\back_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\back_panel_menu_detail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EPreto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EPreto90.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EPreto180.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\EPreto270.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_01.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_02.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_03.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_04.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_05.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_06.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_07.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_08.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_09.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_11.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_12.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_13.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_14.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_15.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_16.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_17.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_18.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_19.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_20.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_21.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_22.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_23.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\ishihara_24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\next_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\tabela_acuidade_fundo.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\VisionCheckLogoRound.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\XamarinLogo.png" />
+  </ItemGroup>
 </Project>

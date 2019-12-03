@@ -2,12 +2,36 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VisionCheck.MenuDetail">
-    <ContentPage.Content Title="Detail" Padding="0">
+    <ContentPage.Content Title="Detalhe" Padding="0">
         <StackLayout BackgroundColor="white" Margin="0,5,0,0">
+            <Label x:Name="usuario" Margin="0,5,0,5"
+                   Text="Vison Check" 
+                   FontSize="30"/>
+            <Label Text="Antes de iniciar a utlização deste App,"
+                   FontSize="20"
+                  Margin="5,5,5,0"/>
+            <Label Text="faça a calibraçãode distâcia."
+                   FontSize="20"
+                   Margin="5,5,5,0"/>
+            <Label Text=""
+                   FontSize="20"
+                   Margin="5,5,5,0"/>
+            <Label Text=""
+                   FontSize="20"
+                   Margin="5,5,5,0"/>
+            <!--Entry IsPassword="True" 
+                   x:Name="senha" 
+                   MaxLength="4"
+                   Placeholder="senha (4)"
+                   Text="Senha" 
+                   Margin="5,5,5,5"> </>
+            <Button Text="Login"
+                    TextColor="#1481C9">
+                
+            </Button-->
             <Image Source="back_panel_menu_detail.png" Margin="0"
-               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
-            <Label Text="Fill" BackgroundColor="Blue" VerticalOptions="FillAndExpand"/>
-            <BoxView BackgroundColor="Orange" HeightRequest="1"/>
+               HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

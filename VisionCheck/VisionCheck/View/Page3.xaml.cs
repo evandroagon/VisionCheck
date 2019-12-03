@@ -21,6 +21,7 @@ namespace VisionCheck.View
             double resposta = 0.0;
 #pragma warning restore CS0219 // A variável "resposta" é atribuída, mas seu valor nunca é usado
             InitializeComponent();
+            Title = "Respostas";
             //respostas = new List<Respostas>();
 
         }

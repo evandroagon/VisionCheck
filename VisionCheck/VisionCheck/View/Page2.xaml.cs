@@ -35,6 +35,7 @@ namespace VisionCheck.View
             // double v = Convert.ToDouble(i) / 24.0;
             Button button = new Button();
             InitializeComponent();
+            Title = "Ishihara - Teste de Cores";
             ImageIshihara.Source = Models.imagem.varImagem[i].value;
             NrSlide.Text = "Nr.:" + (Models.imagem.varImagem[i].id).ToString();
 
