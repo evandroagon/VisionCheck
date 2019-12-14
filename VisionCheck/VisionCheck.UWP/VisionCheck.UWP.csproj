@@ -187,6 +187,7 @@
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="SquareLogo48.png" />
     <Content Include="VisionCheckLogoRound.png" />
+    <Content Include="vision_care_logo.jpg" />
     <Content Include="XamarinLogo.png" />
   </ItemGroup>
   <ItemGroup>

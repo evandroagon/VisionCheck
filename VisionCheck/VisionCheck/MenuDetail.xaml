@@ -5,7 +5,7 @@
     <ContentPage.Content Title="Detalhe" Padding="0">
         <StackLayout BackgroundColor="white" Margin="0,5,0,0">
             <Label x:Name="usuario" Margin="0,5,0,5"
-                   Text="Vison Check" 
+                   Text="Vision Check" 
                    FontSize="30"/>
             <Label Text="Antes de iniciar a utlização deste App,"
                    FontSize="20"
@@ -29,7 +29,7 @@
                     TextColor="#1481C9">
                 
             </Button-->
-            <Image Source="back_panel_menu_detail.png" Margin="0"
+            <Image Source="vision_care_logo.jpg" Margin="0"
                HorizontalOptions="CenterAndExpand" VerticalOptions="EndAndExpand"/>
 
         </StackLayout>

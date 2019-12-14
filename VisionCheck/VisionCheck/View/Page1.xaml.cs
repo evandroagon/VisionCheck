@@ -22,8 +22,9 @@ namespace VisionCheck.View
         private string CorFundo = "#fefefe";
         private string CorE = "#010101";
         private string CorEscala = "#010101";
-
-
+        public int cert = 0, err = 0;
+        public bool fimExame = false;
+        public int ultimaRespostaCorreta = 0;
 
 
         public Page1()
@@ -66,33 +67,84 @@ namespace VisionCheck.View
                 NextButton.BorderColor = Color.FromHex(CorFundo);
 
             }
-            
+
             //labelOptotipoE.VerticalTextAlignment = TextAlignment.End;
+
+            fimExame = false;
+
+            if (fimExame)
+            {
+                index = 14;
+                fatorAtual = Session.varTamanhos[index].value;
+
+                if (fimExame)
+                {
+                    MostrarResultado();
+                }
+
+
+            }
+
+
+            
+
+
+        
 
             if (fatorAtual == 0)
             {
                 index = 14;
-                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+                fatorAtual = Session.varTamanhos[index].value;
                
-            }
-            if (index < Session.Instance.CriarVetTamanhos().Count)
-            {
-                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
-                lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
-            
-            }
-            else
-            {
-                index = 0;
-                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
-                lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
-                UpdateTela(index);
-            }
+            } 
 
             angulo = GirarObjeto(label: labelOptotipoE);
             UpdateTela(index);
 
         }
+
+
+        private async void MostrarResultado()
+        {
+           var i = 14;
+            while (Session.varTamanhos[i].resposta == "correta")
+            {
+                ultimaRespostaCorreta = i;
+                    i--;
+                
+            }
+
+           // var complemento = "";
+           // if(Session.varTamanhos[14].resposta != "correta"){
+         //       complemento = " < ";
+                
+          //  }
+          
+
+            
+            // mostar as respostas corretas e ver a accuidade visual do usuário.
+            string resposta = "";                
+
+                var resultado = await DisplayAlert("Resultados", "Final do Teste" + "\r\nRespostas Corretas = " + cert +
+                "\r\nRespostas Incorretas = " + err +
+                "\r\nAcuidade Visual:" +
+                "\r\nSnellen:" + Session.varTamanhos[ultimaRespostaCorreta].name +
+                "\r\nDec.:" + Session.varTamanhos[ultimaRespostaCorreta].value.ToString() +
+                " ou " + (Session.varTamanhos[ultimaRespostaCorreta].value * 100).ToString() + "%", "Sair", "Repetir o teste");
+                resposta = resultado ? "s" : "r";
+                if (resposta == "s")
+                {
+                    await Navigation.PopToRootAsync();
+                }
+                else
+                {
+                    await Navigation.PopAsync(); //voltar para pagina anterior
+
+                }
+            
+        }
+    
+            
 
         private double GirarObjeto(Label label)
         {
@@ -106,8 +158,6 @@ namespace VisionCheck.View
             switch (numLados)
 
             {
-
-
                 case 0:
                     angulo = 0.0f;
                     label.Rotation = angulo;
@@ -131,11 +181,12 @@ namespace VisionCheck.View
 
         private void UpdateTela(int i)
         {
-            lblTamanho.Text = "Snellen: " + Session.Instance.CriarVetTamanhos()[i].name;
-            lblTamanhoDec.Text = "Dec.: " + Math.Round(Session.Instance.CriarVetTamanhos()[i].value, 3)+
-                                             "\r\n"+ Math.Round(Session.Instance.CriarVetTamanhos()[i].value, 3)*100 +"%";
-            labelNrOptotipo.Text = "Nr.: " + Convert.ToString(i + 1);            
-
+            
+            lblTamanho.Text = "Snellen: " + Session.varTamanhos[i].name;
+            lblTamanhoDec.Text = "Dec.: " + Math.Round(Session.varTamanhos[i].value, 3)+
+                                             "\r\n"+ Math.Round(Session.varTamanhos[i].value, 3)*100 +"%";
+            labelNrOptotipo.Text = "Nr.: " + Convert.ToString(i + 1);  
+            
         }
 
         private void BackButtonClicked(object sender, EventArgs e)
@@ -145,22 +196,21 @@ namespace VisionCheck.View
             index++;
             if (fatorAtual == 0)
             {
-                index = 1;
-                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+                index = 14;
+                fatorAtual = Session.varTamanhos[index].value;
             }
-            if (index < Session.Instance.CriarVetTamanhos().Count)
+            if (index < Session.varTamanhos.Count)
             {
-                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
-                lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
-
+                fatorAtual = Session.varTamanhos[index].value;
+                lblTamanho.Text = Session.varTamanhos[index].name;
             }
             else
             {
                 index = 0;
-                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
-                lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
+                fatorAtual = Session.varTamanhos[index].value;
+                lblTamanho.Text = Session.varTamanhos[index].name;
             }
-            Session.Instance.CriarVetTamanhos()[index].angulo = angulo;
+            Session.varTamanhos[index].angulo = angulo;
             labelOptotipoE.FontSize =  Tamanho_base / (fatorAtual * 20);  //* 20 porque a referencia é o tamamho 20/400
             labelOptotipoE.HorizontalTextAlignment = TextAlignment.Center;
             labelOptotipoE.Text = $"E";
@@ -169,14 +219,27 @@ namespace VisionCheck.View
 
         }
 
-        private void NextButtonClicked(object sender, EventArgs e)
+        private async void NextButtonClicked(object sender, EventArgs e)
         {
-
-            abrePaginaRespostas(angulo_retorno, EventArgs.Empty);
-
+           
+            if (index >= 0 && !fimExame)
+            {
+               await abrePaginaRespostas(angulo_retorno, EventArgs.Empty);
+                
+            }
+           
+                                          
+            if (fimExame)
+            {
+                MostrarResultado();
+                
+            }
         }
 
-        private async void abrePaginaRespostas(object sender, EventArgs e)
+
+
+
+        private async Task abrePaginaRespostas(object sender, EventArgs e)
         {
 
             // criando a pagina de respostas como modalPage e amarrando um método ao ModalHandler
@@ -187,46 +250,66 @@ namespace VisionCheck.View
                 angulo_retorno = (double)o;
                 if (angulo == angulo_retorno)
                 {
-                    //debugando repostas Ok funcioando beleza
-                    //System.Console.WriteLine("DEBUG - " + "angulo:" + angulo + "angulo retorno" + angulo_retorno);
-                    labelTipoExame.Text = ("angulo: " + angulo + "angulo retorno" + angulo_retorno + "Resp. Correta");
-                    labelTipoExame.TextColor = Color.Green;
+                    
+                    Session.Instance.AtualizarTamanhos(index, "correta");
                 }
                 else
                 {
-                    labelTipoExame.Text = ("Resposta Incorreta");
+          
+                    Session.Instance.AtualizarTamanhos(index, "incorreta");
 
                 }
 
-                if (index >= 1) { index--; }
-                if (fatorAtual == 0)
+                if (index >= 0) { index--; }
+          
+                if (index >= 0)
                 {
-                    index = 1;
-                    fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
-                }
-                if (index < Session.Instance.CriarVetTamanhos().Count)
-                {
-                    fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
-                    lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
+                    fatorAtual = Session.varTamanhos[index].value;
+                    lblTamanho.Text = Session.varTamanhos[index].name;
 
                 }
                 else
                 {
-                    index = 0;
-                    fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
-                    lblTamanho.Text = Session.Instance.CriarVetTamanhos()[index].name;
+                    index = 0; //troquei o zero por 14 testando
+                    fatorAtual = Session.varTamanhos[index].value;
+                    lblTamanho.Text = Session.varTamanhos[index].name;
+                    fimExame = true;
+                    cert = 0; err = 0;
+                    //ultimaRespostaCorreta = 0;
+                    for (int i = 14; i >= 0; i--)
+                    {
+                        if (Session.varTamanhos[i].resposta == "correta")
+                        {
+                            cert = cert + 1;
+                            //ultimaRespostaCorreta = i;
+                        }
+                        else
+                        {
+                            err = err + 1;
+                        }
+
+                        System.Console.WriteLine("DEBUG - " + "resposta:" + Session.varTamanhos[i].resposta);
+                        // fimExame = true;
+                    }
+
+
                 }
-                fatorAtual = Session.Instance.CriarVetTamanhos()[index].value;
+                fatorAtual = Session.varTamanhos[index].value;
                 labelOptotipoE.FontSize = Tamanho_base / (fatorAtual * 20);
                 labelOptotipoE.Text = $"E";
                 angulo = GirarObjeto(labelOptotipoE); // gira o optotipo
                 UpdateTela(index);
             };
 
-
-            await Navigation.PushModalAsync(paginaRespostas, true);
-
-
+            if (!fimExame)
+            {
+                await Navigation.PushModalAsync(paginaRespostas, false);
+            }
+            else
+            {
+                
+            }
+                          
 
 
         }

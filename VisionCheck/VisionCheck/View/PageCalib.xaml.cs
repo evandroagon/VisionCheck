@@ -120,7 +120,8 @@ namespace VisionCheck.View
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
-            string my_preferences = "my_preferences";  // nome do repositorio de preferencias personalizado
+            string my_preferences = "my_preferences";  // nome do repositorio de preferencias personalizado        
+  
 
             double tamanhoMedido = Session.Instance.UserTamanhoMedido;
             Preferences.Set("tamanhoMedido_p", tamanhoMedido, my_preferences);
@@ -144,9 +145,10 @@ namespace VisionCheck.View
 
             {
                 string valor_distancia = ValorDistancia.Text;
-                Preferences.Set("key_distancia", valor_distancia);
-
                 string my_preferences = "my_preferences";  // nome do repositorio de preferencias personalizado
+
+                Preferences.Set("key_distancia", valor_distancia, my_preferences);
+                              
 
                 double tamanhoMedido = Session.Instance.UserTamanhoMedido;
                 Preferences.Set("tamanhoMedido_p", tamanhoMedido, my_preferences);

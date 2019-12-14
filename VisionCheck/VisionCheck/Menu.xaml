@@ -30,7 +30,7 @@
                         <Label
                           Grid.Column="1"
                           Grid.Row="2"
-                          Text="VisualCheck"
+                          Text="VisionCheck"
                           TextColor="White"/>
                     </Grid>
 

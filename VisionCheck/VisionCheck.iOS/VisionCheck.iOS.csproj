@@ -271,4 +271,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\XamarinLogo.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\vision_care_logo.jpg" />
+  </ItemGroup>
 </Project>

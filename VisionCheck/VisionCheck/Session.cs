@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using Xamarin.Essentials;
 
@@ -9,9 +10,11 @@ namespace VisionCheck
 
     {
         private static volatile Session instance;
-#pragma warning disable IDE0044 // Adicionar modificador somente leitura
+
+        public static List<VetTamanhos> T;
+        //#pragma warning disable IDE0044 // Adicionar modificador somente leitura
         private static object sync = new object();
-#pragma warning restore IDE0044 // Adicionar modificador somente leitura
+        //#pragma warning restore IDE0044 // Adicionar modificador somente leitura
 
         private Session() { }
 
@@ -23,31 +26,30 @@ namespace VisionCheck
                 {
                     lock (sync)
                     {
-                        if (instance == null)
-                        {
-                            instance = new Session();
 
-                            string my_preferences = "my_preferences";  // nome do repositorio de preferencias personalizado
-                            double tamanhoMedido = Preferences.Get("tamanhoMedido_p", 1.2, my_preferences);                        
-                            double distancia = Preferences.Get("distancia_p", 40.0, my_preferences);             
-                            double fator = Preferences.Get("fator_p", 1.0, my_preferences);                      
-                            double tamanho = Preferences.Get("tamanho_p", 100.0, my_preferences);
-                            bool contrasteAlto = Preferences.Get("contraste_alto_p", true, my_preferences);
-                            bool mostrarEsc = Preferences.Get("mostrar_esc", true, my_preferences);
-                            bool mostrarDist = Preferences.Get("mostrar_distancia", true, my_preferences);
+                        instance = new Session();
 
-                            Session.Instance.UserDistancia = distancia; //em metros
-                            Session.Instance.UserFator = fator; //relação entre tamanho medido e tamanho esperado
-                            Session.Instance.UserTamanho = tamanho;  // fonte para o 20/400 já calibrada
-                            Session.Instance.UserTamanhoMedido = tamanhoMedido;
-                            Session.Instance.UserContrasteAlto = contrasteAlto;
-                            Session.Instance.UserMostrarEsc = mostrarEsc;
-                            Session.Instance.UserMostrarDist = mostrarDist;
-                            
-                        }
+                        string my_preferences = "my_preferences";  // nome do repositorio de preferencias personalizado
+                        double tamanhoMedido = Preferences.Get("tamanhoMedido_p", 1.2, my_preferences);
+                        double distancia = Preferences.Get("distancia_p", 40.0, my_preferences);
+                        double fator = Preferences.Get("fator_p", 1.0, my_preferences);
+                        double tamanho = Preferences.Get("tamanho_p", 100.0, my_preferences);
+                        bool contrasteAlto = Preferences.Get("contraste_alto_p", true, my_preferences);
+                        bool mostrarEsc = Preferences.Get("mostrar_esc", true, my_preferences);
+                        bool mostrarDist = Preferences.Get("mostrar_distancia", true, my_preferences);
+
+                        Session.Instance.UserDistancia = distancia; //em metros
+                        Session.Instance.UserFator = fator; //relação entre tamanho medido e tamanho esperado
+                        Session.Instance.UserTamanho = tamanho;  // fonte para o 20/400 já calibrada
+                        Session.Instance.UserTamanhoMedido = tamanhoMedido;
+                        Session.Instance.UserContrasteAlto = contrasteAlto;
+                        Session.Instance.UserMostrarEsc = mostrarEsc;
+                        Session.Instance.UserMostrarDist = mostrarDist;
+
+
                     }
                 }
-               
+
                 return instance;
             }
 
@@ -65,11 +67,25 @@ namespace VisionCheck
         public bool UserMostrarEsc { get; set; }
         public bool UserMostrarDist { get; set; }
 
-   
 
-        public List<VetTamanhos> CriarVetTamanhos()
+        public bool AtualizarTamanhos(int i, string resposta)
+
         {
-             var  varTamanhos = new List<VetTamanhos>
+
+            varTamanhos[i].resposta = resposta;
+            return true;
+        }
+
+
+        // alteração
+        public static List<VetTamanhos> //CriarVetTAmanhos()
+     //   { 
+          varTamanhos = new List<VetTamanhos>
+            
+
+        //public List<VetTamanhos> CriarVetTamanhos() // versão anterior
+       // {
+         //    var  varTamanhos = new List<VetTamanhos>  //versão anterior
            {
                 new VetTamanhos() { value =  20.0/16.0, name = "20/16",   resposta = "", angulo=0.0},
                 new VetTamanhos() { value =  20.0/20.0, name = "20/20",   resposta = "", angulo=0.0},
@@ -86,10 +102,16 @@ namespace VisionCheck
                 new VetTamanhos() { value = 20.0/250.0, name = "20/250",  resposta = "", angulo=0.0},
                 new VetTamanhos() { value = 20.0/320.0, name = "20/320",  resposta = "", angulo=0.0},
                 new VetTamanhos() { value = 20.0/400.0, name = "20/400",  resposta = "", angulo=0.0},
-            };            
-        return varTamanhos;
+            };
+    
+
+           // return varTamanhos;
+            
+        
         }
 
+
+   
 
 
         public class VetTamanhos
@@ -104,4 +126,4 @@ namespace VisionCheck
 
 
     }
-}
+
